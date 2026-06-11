@@ -1,6 +1,7 @@
 import { FaGithub, FaExternalLinkAlt, FaBrain, FaAws } from 'react-icons/fa';
 import { SiPython, SiReact, SiMongodb, SiTensorflow, SiFlask, SiMysql } from 'react-icons/si';
 import { MdCloudQueue, MdBarChart, MdSmartphone, MdStorage } from 'react-icons/md';
+import Tilt from 'react-parallax-tilt';
 
 const PROJECTS = [
   {
@@ -150,48 +151,61 @@ export default function Projects() {
 
         <div className="projects-grid">
           {PROJECTS.map((project, i) => (
-            <div key={i} className="project-card reveal" style={{ transitionDelay: `${(i % 3) * 0.12}s` }}>
-              <div className="project-banner" style={{ background: project.gradient }}>
-                <project.GradientIcon />
-                {/* Decorative circles */}
-                <div style={{ position: 'absolute', top: -20, right: -20, width: 100, height: 100, borderRadius: '50%', background: 'rgba(255,255,255,0.12)' }} />
-                <div style={{ position: 'absolute', bottom: -25, left: -10, width: 70, height: 70, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
-                <div style={{ position: 'absolute', top: '50%', left: '10%', width: 50, height: 50, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
-              </div>
-
-              <div className="project-body">
-                <div className="project-number">{project.number}</div>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-desc">{project.desc}</p>
-
-                <div className="project-tech">
-                  {project.tech.map(t => (
-                    <TechBadge key={t.name} {...t} />
-                  ))}
+            <Tilt
+              key={i}
+              className="reveal"
+              style={{ transitionDelay: `${(i % 3) * 0.12}s`, borderRadius: 'var(--radius-xl)' }}
+              glareEnable={true}
+              glareMaxOpacity={0.12}
+              glareColor="#ffffff"
+              glarePosition="all"
+              glareBorderRadius="24px"
+              tiltMaxAngleX={8}
+              tiltMaxAngleY={8}
+            >
+              <div className="project-card" style={{ height: '100%' }}>
+                <div className="project-banner" style={{ background: project.gradient }}>
+                  <project.GradientIcon />
+                  {/* Decorative circles */}
+                  <div style={{ position: 'absolute', top: -20, right: -20, width: 100, height: 100, borderRadius: '50%', background: 'rgba(255,255,255,0.12)' }} />
+                  <div style={{ position: 'absolute', bottom: -25, left: -10, width: 70, height: 70, borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }} />
+                  <div style={{ position: 'absolute', top: '50%', left: '10%', width: 50, height: 50, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
                 </div>
 
-                <div className="project-links">
-                  <a
-                    href={project.github}
-                    target="_blank" rel="noreferrer"
-                    className="btn btn-secondary"
-                    style={{ padding: '9px 18px', fontSize: '0.82rem' }}
-                  >
-                    <FaGithub size={14} /> GitHub
-                  </a>
-                  {project.demo && (
+                <div className="project-body">
+                  <div className="project-number">{project.number}</div>
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-desc">{project.desc}</p>
+
+                  <div className="project-tech">
+                    {project.tech.map(t => (
+                      <TechBadge key={t.name} {...t} />
+                    ))}
+                  </div>
+
+                  <div className="project-links">
                     <a
-                      href={project.demo}
+                      href={project.github}
                       target="_blank" rel="noreferrer"
-                      className="btn btn-primary"
+                      className="btn btn-secondary"
                       style={{ padding: '9px 18px', fontSize: '0.82rem' }}
                     >
-                      <FaExternalLinkAlt size={12} /> Live Demo
+                      <FaGithub size={14} /> GitHub
                     </a>
-                  )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank" rel="noreferrer"
+                        className="btn btn-primary"
+                        style={{ padding: '9px 18px', fontSize: '0.82rem' }}
+                      >
+                        <FaExternalLinkAlt size={12} /> Live Demo
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            </Tilt>
           ))}
         </div>
       </div>

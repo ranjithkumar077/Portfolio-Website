@@ -36,28 +36,30 @@ export default function LeetCode() {
 
   // Fetch live LeetCode stats
   useEffect(() => {
-    // Use alfa-leetcode-api (reliable community API)
-    fetch(`https://alfa-leetcode-api.onrender.com/${HANDLE}/solved`)
+    // Primary: Faisal Shohag vercel endpoint (very fast and reliable)
+    fetch(`https://leetcode-api-faisalshohag.vercel.app/${HANDLE}`)
       .then(r => r.json())
       .then(d => {
-        if (d && d.solvedProblem !== undefined) {
+        if (d && d.totalSolved !== undefined) {
           setStats({
-            total: d.solvedProblem,
+            total: d.totalSolved,
             easy: d.easySolved,
             medium: d.mediumSolved,
             hard: d.hardSolved,
           });
+          setLoading(false);
+        } else {
+          throw new Error('Fallback to secondary');
         }
-        setLoading(false);
       })
       .catch(() => {
-        // Fallback: try another API
-        fetch(`https://leetcode-stats-api.herokuapp.com/${HANDLE}`)
+        // Fallback 1: alfa-leetcode-api
+        fetch(`https://alfa-leetcode-api.onrender.com/${HANDLE}/solved`)
           .then(r => r.json())
           .then(d => {
-            if (d && d.totalSolved !== undefined) {
+            if (d && d.solvedProblem !== undefined) {
               setStats({
-                total: d.totalSolved,
+                total: d.solvedProblem,
                 easy: d.easySolved,
                 medium: d.mediumSolved,
                 hard: d.hardSolved,
@@ -65,7 +67,23 @@ export default function LeetCode() {
             }
             setLoading(false);
           })
-          .catch(() => setLoading(false));
+          .catch(() => {
+            // Fallback 2: leetcode-stats-api
+            fetch(`https://leetcode-stats-api.herokuapp.com/${HANDLE}`)
+              .then(r => r.json())
+              .then(d => {
+                if (d && d.totalSolved !== undefined) {
+                  setStats({
+                    total: d.totalSolved,
+                    easy: d.easySolved,
+                    medium: d.mediumSolved,
+                    hard: d.hardSolved,
+                  });
+                }
+                setLoading(false);
+              })
+              .catch(() => setLoading(false));
+          });
       });
   }, []);
 
@@ -79,8 +97,8 @@ export default function LeetCode() {
     return () => observer.disconnect();
   }, []);
 
-  const easy = stats?.easy ?? 45;
-  const medium = stats?.medium ?? 28;
+  const easy = stats?.easy ?? 57;
+  const medium = stats?.medium ?? 32;
   const hard = stats?.hard ?? 8;
   const total = stats?.total ?? (easy + medium + hard);
   const totalDenom = Math.max(total, 100);

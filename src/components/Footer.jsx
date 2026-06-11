@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { FaGithub, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
-import { FiMail } from 'react-icons/fi';
-import { SiLeetcode } from 'react-icons/si';
+import { SiLeetcode, SiGmail } from 'react-icons/si';
 
 const FOOTER_LINKS = [
   { Icon: FaGithub, label: 'GitHub', href: 'https://github.com/ranjithkumar077', color: '#24292e', hoverBg: '#24292e' },
   { Icon: FaLinkedinIn, label: 'LinkedIn', href: 'https://linkedin.com/in/ranjithkumar077', color: '#0A66C2', hoverBg: '#0A66C2' },
   { Icon: SiLeetcode, label: 'LeetCode', href: 'https://leetcode.com/u/ranjithkumar077/', color: '#f89f1b', hoverBg: '#f89f1b' },
-  { Icon: FiMail, label: 'Email', href: 'mailto:branjithk9@gmail.com', color: '#6366F1', hoverBg: '#6366F1' },
+  { Icon: SiGmail, label: 'Email', href: 'mailto:branjithk9@gmail.com', color: '#EA4335', hoverBg: '#EA4335' },
   { Icon: FaWhatsapp, label: 'WhatsApp', href: 'https://wa.me/917780183374', color: '#25D366', hoverBg: '#25D366' },
 ];
 

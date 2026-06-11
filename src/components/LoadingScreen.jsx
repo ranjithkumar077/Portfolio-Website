@@ -23,7 +23,7 @@ export default function LoadingScreen({ loading }) {
               onError={() => setImgErr(true)}
             />
           ) : (
-            <div className="loading-profile-ring-inner">RK</div>
+            <div className="loading-profile-ring-inner" style={{ fontSize: '1.25rem' }}>RANJITH KUMAR</div>
           )}
         </div>
         <div className="loading-name">B. Ranjith Kumar</div>

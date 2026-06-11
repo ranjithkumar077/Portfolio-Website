@@ -248,7 +248,7 @@ export default function Hero() {
                   onError={() => setImgErr(true)}
                 />
               ) : (
-                <div className="profile-placeholder-text">RK</div>
+                <div className="profile-placeholder-text" style={{ fontSize: '3rem', letterSpacing: '-1px' }}>RANJITH KUMAR</div>
               )}
             </div>
           </div>

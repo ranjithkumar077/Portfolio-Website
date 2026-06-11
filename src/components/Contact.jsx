@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { FaGithub, FaLinkedinIn, FaWhatsapp, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
-import { FiMail } from 'react-icons/fi';
-import { SiLeetcode } from 'react-icons/si';
+import { SiLeetcode, SiGmail } from 'react-icons/si';
 
 const CONTACTS = [
   {
     id: 'email',
     type: 'Email',
     value: 'branjithk9@gmail.com',
-    Icon: FiMail,
-    iconColor: '#6366F1',
-    iconBg: 'linear-gradient(135deg, #6366F1, #8B5CF6)',
+    Icon: SiGmail,
+    iconColor: '#ffffff',
+    iconBg: 'linear-gradient(135deg, #EA4335, #c5221f)',
     href: 'mailto:branjithk9@gmail.com',
     cardClass: 'email',
     copyable: true,
@@ -136,7 +135,7 @@ export default function Contact() {
 
         <div className="contact-grid">
           {CONTACTS.map((c, i) => (
-            <div key={c.id} style={{ transitionDelay: `${i * 0.08}s` }}>
+            <div key={c.id} className="contact-card-wrapper" style={{ transitionDelay: `${i * 0.08}s` }}>
               <ContactCard contact={c} />
             </div>
           ))}

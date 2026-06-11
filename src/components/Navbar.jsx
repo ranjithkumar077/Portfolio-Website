@@ -39,7 +39,7 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <a className="nav-logo" href="#hero" onClick={(e) => { e.preventDefault(); handleNav('#hero'); }}>
-        RK
+        RANJITH KUMAR
       </a>
       <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
         {NAV_ITEMS.map(item => (

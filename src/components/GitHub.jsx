@@ -7,10 +7,11 @@ const HANDLE = 'ranjithkumar077';
 export default function GitHub() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cacheBuster, setCacheBuster] = useState(Date.now());
 
   useEffect(() => {
-    // Fetch GitHub user data live
-    fetch(`https://api.github.com/users/${HANDLE}`)
+    // Fetch GitHub user data live with cache-busting
+    fetch(`https://api.github.com/users/${HANDLE}?t=${Date.now()}`)
       .then(r => r.json())
       .then(d => {
         setData(d);
@@ -94,7 +95,7 @@ export default function GitHub() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: 20, marginTop: 24 }}>
           <div className="glass-card reveal" style={{ padding: 20, overflow: 'hidden' }}>
             <img
-              src={`https://github-readme-stats.vercel.app/api?username=${HANDLE}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=6366F1&icon_color=8B5CF6&text_color=475569&count_private=true&cache_seconds=3600`}
+              src={`https://github-readme-stats.vercel.app/api?username=${HANDLE}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=6366F1&icon_color=8B5CF6&text_color=475569&count_private=true&cache_seconds=0&t=${cacheBuster}`}
               alt="GitHub Stats"
               style={{ width: '100%', borderRadius: 12, display: 'block' }}
               onError={e => e.target.style.display = 'none'}
@@ -103,7 +104,7 @@ export default function GitHub() {
 
           <div className="glass-card reveal reveal-delay-1" style={{ padding: 20, overflow: 'hidden' }}>
             <img
-              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${HANDLE}&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=6366F1&text_color=475569&cache_seconds=3600`}
+              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${HANDLE}&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=6366F1&text_color=475569&cache_seconds=0&t=${cacheBuster}`}
               alt="Top Languages"
               style={{ width: '100%', borderRadius: 12, display: 'block' }}
               onError={e => e.target.style.display = 'none'}
@@ -112,7 +113,7 @@ export default function GitHub() {
 
           <div className="glass-card reveal reveal-delay-2" style={{ padding: 20, overflow: 'hidden', gridColumn: '1 / -1' }}>
             <img
-              src={`https://github-readme-streak-stats.herokuapp.com?user=${HANDLE}&theme=tokyonight&hide_border=true&background=00000000&ring=6366F1&fire=EC4899&currStreakLabel=8B5CF6&cache_seconds=3600`}
+              src={`https://github-readme-streak-stats.herokuapp.com?user=${HANDLE}&theme=tokyonight&hide_border=true&background=00000000&ring=6366F1&fire=EC4899&currStreakLabel=8B5CF6&cache_seconds=0&t=${cacheBuster}`}
               alt="GitHub Streak"
               style={{ width: '100%', borderRadius: 12, display: 'block' }}
               onError={e => e.target.style.display = 'none'}
