@@ -1,4 +1,4 @@
-# 🌟 B. Ranjith Kumar - Portfolio Website
+# 🌟 B Ranjith Kumar - Portfolio Website
 
 Welcome to my personal portfolio repository! This is a modern, responsive, and dynamic web application showcasing my skills, experience, and projects in **Artificial Intelligence**, **Data Science**, **Cloud Computing**, and **Full Stack Development**.
 
